@@ -44,4 +44,18 @@ class ArvoreRecursiva {
             if (atual.direita != null) fila.add(atual.direita);
         }
     }
+
+    public int contarNosFolha() {
+        return contarNosFolhaRec(raiz);
+    }
+
+    private int contarNosFolhaRec(NoRecursivo no) {
+        if (no == null) return 0;
+
+        if (no.esquerda == null && no.direita == null) {
+            return 1;
+        }
+
+        return contarNosFolhaRec(no.esquerda) + contarNosFolhaRec(no.direita);
+    }
 }

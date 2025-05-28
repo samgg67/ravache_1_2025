@@ -24,7 +24,7 @@ public class MainRecursivo {
         System.out.println();
 
         System.out.print("Em nível: ");
-        arvore.buscarEmNivel(); // já é iterativo
+        arvore.buscarEmNivel();
         System.out.println();
     }
 }
