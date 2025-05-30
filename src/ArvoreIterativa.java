@@ -88,6 +88,7 @@ class ArvoreIterativa {
             if (atual.direita != null) fila.add(atual.direita);
         }
     }
+
     public int contarNosFolha() {
         if (raiz == null) return 0;
 
@@ -109,4 +110,39 @@ class ArvoreIterativa {
         return contador;
     }
 
+    public int nosFila() {
+        if (raiz == null) return 0;
+
+        Queue<NoIterativo> fila = new LinkedList<>();
+        fila.add(raiz);
+
+        int contador = 0;
+        while (!fila.isEmpty()) {
+            NoIterativo atual = fila.poll();
+            contador++;
+
+            if (atual.esquerda != null) fila.add(atual.esquerda);
+            if (atual.direita != null) fila.add(atual.direita);
+        }
+
+        return contador;
+    }
+
+    public int nosPilha() {
+        if (raiz == null) return 0;
+
+        Stack<NoIterativo> pilha = new Stack<>();
+        pilha.push(raiz);
+
+        int contador = 0;
+        while (!pilha.isEmpty()) {
+            NoIterativo atual = pilha.pop();
+            contador++;
+
+            if (atual.direita != null) pilha.push(atual.direita);
+            if (atual.esquerda != null) pilha.push(atual.esquerda);
+        }
+
+        return contador;
+    }
 }

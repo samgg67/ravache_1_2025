@@ -9,7 +9,11 @@ public class MainIterativo {
         arvore.raiz.esquerda.direita = new NoIterativo("E");
         arvore.raiz.direita.direita = new NoIterativo("F");
 
-        System.out.println("Total de nós na árvore: " + arvore.contarNos());
+        System.out.println("Total de nós na árvore (recursivo ou padrão): " + arvore.contarNos());
+
+
+        System.out.println("Total de nós usando fila: " + arvore.nosFila());
+        System.out.println("Total de nós usando pilha: " + arvore.nosPilha());
 
         System.out.print("Pré-ordem: ");
         arvore.buscarPreOrdem();
@@ -28,4 +32,3 @@ public class MainIterativo {
         System.out.println();
     }
 }
-
