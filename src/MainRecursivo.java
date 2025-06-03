@@ -27,4 +27,5 @@ public class MainRecursivo {
         arvore.buscarEmNivel();
         System.out.println();
     }
+
 }

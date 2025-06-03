@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="663e3d79-2feb-4d39-8024-e3c6ef7a2328" name="Changes" comment="Atividade 1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ArvoreIterativa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ArvoreIterativa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainIterativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainIterativo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Arvore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Arvore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MainRecursivo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainRecursivo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/No.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/No.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +48,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.MainAVL.executor": "Run",
     "Application.MainIterativo.executor": "Run",
     "Application.MainRecursivo.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -94,9 +96,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/No.java</url>
-          <line>7</line>
-          <option name="timeStamp" value="1" />
+          <url>file://$PROJECT_DIR$/src/ArvoreAVL.java</url>
+          <line>118</line>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
