@@ -1,20 +1,13 @@
 public class MainAVL {
     public static void main(String[] args) {
-        Arvore arvore = new Arvore();
+        ArvoreAVL arvore = new ArvoreAVL();
+        int[] chaves = {-10, 20, 30, 40, 50, 25};
 
-        arvore.inserir(30);
-        arvore.inserir(20);
-        arvore.inserir(40);
-        arvore.inserir(10);
-        arvore.inserir(25);
+        for (int chave : chaves) {
+            arvore.raiz = arvore.inserir(arvore.raiz, chave);
+        }
 
-        System.out.print("Árvore em ordem: ");
-        arvore.percorrerEmOrdem();
-
-        System.out.println("Remover o valor 20");
-        arvore.remover(20);
-
-        System.out.print("Árvore após remoção: ");
-        arvore.percorrerEmOrdem();
+        System.out.println("Percurso em ordem da árvore AVL:");
+        arvore.percursoEmOrdem(arvore.raiz);
     }
 }

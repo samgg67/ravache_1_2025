@@ -1,13 +1,12 @@
 public class No {
-    int valor;
-    No esquerdo;
-    No direito;
-    int altura;
+    int chave,altura;
+    No esquerdo,direito;
 
     public No(int valor) {
-        this.valor = valor;
         this.esquerdo = null;
         this.direito = null;
-        this.altura = 0;
+        this.altura = 1;
+        chave = valor;
+
     }
 }
