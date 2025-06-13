@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="663e3d79-2feb-4d39-8024-e3c6ef7a2328" name="Changes" comment="Atividade 1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ArvoreAVL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ArvoreAVL.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,16 +88,5 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Atividade 1" />
     <option name="LAST_COMMIT_MESSAGE" value="Atividade 1" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/ArvoreAVL.java</url>
-          <line>118</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
