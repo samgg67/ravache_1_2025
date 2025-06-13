@@ -1,11 +1,11 @@
 public class arvoreRN {
-    private NoRB raiz;
+    private NoRN raiz;
 
-    public NoRB buscar(int key) {
+    public NoRN buscar(int key) {
         return buscarRec(raiz, key);
     }
 
-    private NoRB buscarRec(NoRB no, int key) {
+    private NoRN buscarRec(NoRN no, int key) {
         if (no == null || no.key == key)
             return no;
         if (key < no.key)
@@ -15,12 +15,12 @@ public class arvoreRN {
     }
 
     public void inserir(int key, Object value) {
-        NoRB novo = new NoRB(key, value, Cor.Vermelho, null);
+        NoRN novo = new NoRN(key, value, Cor.Vermelho, null);
         raiz = inserir(raiz, novo);
         corrigirInsercao(novo);
     }
 
-    private NoRB inserir(NoRB raiz, NoRB novo) {
+    private NoRN inserir(NoRN raiz, NoRN novo) {
         if (raiz == null)
             return novo;
 
@@ -35,13 +35,13 @@ public class arvoreRN {
         return raiz;
     }
 
-    private void corrigirInsercao(NoRB no) {
+    private void corrigirInsercao(NoRN no) {
         while (no != raiz && no.parent.isRed()) {
-            NoRB pai = no.parent;
-            NoRB avo = pai.parent;
+            NoRN pai = no.parent;
+            NoRN avo = pai.parent;
 
             if (pai == avo.left) {
-                NoRB tio = avo.right;
+                NoRN tio = avo.right;
 
                 if (tio != null && tio.isRed()) {
                     pai.color = Cor.Preto;
@@ -58,7 +58,7 @@ public class arvoreRN {
                     rotacaoDireita(avo);
                 }
             } else {
-                NoRB tio = avo.left;
+                NoRN tio = avo.left;
 
                 if (tio != null && tio.isRed()) {
                     pai.color = Cor.Preto;
@@ -79,8 +79,8 @@ public class arvoreRN {
         raiz.color = Cor.Preto;
     }
 
-    private void rotacaoEsquerda(NoRB no) {
-        NoRB y = no.right;
+    private void rotacaoEsquerda(NoRN no) {
+        NoRN y = no.right;
         no.right = y.left;
         if (y.left != null) y.left.parent = no;
         y.parent = no.parent;
@@ -97,8 +97,8 @@ public class arvoreRN {
         no.parent = y;
     }
 
-    private void rotacaoDireita(NoRB no) {
-        NoRB y = no.left;
+    private void rotacaoDireita(NoRN no) {
+        NoRN y = no.left;
         no.left = y.right;
         if (y.right != null) y.right.parent = no;
         y.parent = no.parent;
@@ -115,17 +115,16 @@ public class arvoreRN {
         no.parent = y;
     }
 
-    // Remoção pública
     public void remover(int key) {
-        NoRB no = buscar(key);
+        NoRN no = buscar(key);
         if (no != null)
             removerNo(no);
     }
 
-    private void removerNo(NoRB z) {
-        NoRB y = z;
+    private void removerNo(NoRN z) {
+        NoRN y = z;
         Cor corOriginal = y.color;
-        NoRB x;
+        NoRN x;
 
         if (z.left == null) {
             x = z.right;
@@ -156,10 +155,10 @@ public class arvoreRN {
             corrigirRemocao(x);
     }
 
-    private void corrigirRemocao(NoRB x) {
+    private void corrigirRemocao(NoRN x) {
         while (x != raiz && (x == null || x.isBlack())) {
             if (x == x.parent.left) {
-                NoRB w = x.parent.right;
+                NoRN w = x.parent.right;
                 if (w != null && w.isRed()) {
                     w.color = Cor.Preto;
                     x.parent.color = Cor.Vermelho;
@@ -186,7 +185,7 @@ public class arvoreRN {
                     x = raiz;
                 }
             } else {
-                NoRB w = x.parent.left;
+                NoRN w = x.parent.left;
                 if (w != null && w.isRed()) {
                     w.color = Cor.Preto;
                     x.parent.color = Cor.Vermelho;
@@ -217,7 +216,7 @@ public class arvoreRN {
         if (x != null) x.color = Cor.Preto;
     }
 
-    private void transplantar(NoRB u, NoRB v) {
+    private void transplantar(NoRN u, NoRN v) {
         if (u.parent == null) {
             raiz = v;
         } else if (u == u.parent.left) {
@@ -231,7 +230,7 @@ public class arvoreRN {
         }
     }
 
-    private NoRB minimo(NoRB no) {
+    private NoRN minimo(NoRN no) {
         while (no.left != null) {
             no = no.left;
         }
@@ -243,7 +242,7 @@ public class arvoreRN {
         System.out.println();
     }
 
-    private void percursoEmOrdem(NoRB no) {
+    private void percursoEmOrdem(NoRN no) {
         if (no != null) {
             percursoEmOrdem(no.left);
             System.out.print(no + " ");
