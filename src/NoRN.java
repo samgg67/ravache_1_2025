@@ -1,18 +1,18 @@
 public class NoRN {
-    int key;
+    int chave;
     Object value;
     Cor color;
-    NoRN left;
-    NoRN right;
+    NoRN esquerdo;
+    NoRN direito;
     NoRN parent;
 
-    public NoRN(int key, Object value, Cor color, NoRN parent) {
-        this.key = key;
+    public NoRN(int chave, Object value, Cor color, NoRN parent) {
+        this.chave = chave;
         this.value = value;
         this.color = color;
         this.parent = parent;
-        this.left = null;
-        this.right = null;
+        this.esquerdo = null;
+        this.direito = null;
     }
 
     public boolean isRed() {
@@ -25,6 +25,6 @@ public class NoRN {
 
     @Override
     public String toString() {
-        return "[" + key + ":" + color + "]";
+        return "[" + chave + ":" + color + "]";
     }
 }

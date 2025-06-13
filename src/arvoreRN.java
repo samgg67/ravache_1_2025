@@ -1,21 +1,21 @@
 public class arvoreRN {
     private NoRN raiz;
 
-    public NoRN buscar(int key) {
-        return buscarRec(raiz, key);
+    public NoRN buscar(int chave) {
+        return buscarRec(raiz, chave);
     }
 
-    private NoRN buscarRec(NoRN no, int key) {
-        if (no == null || no.key == key)
+    private NoRN buscarRec(NoRN no, int chave) {
+        if (no == null || no.chave == chave)
             return no;
-        if (key < no.key)
-            return buscarRec(no.left, key);
+        if (chave < no.chave)
+            return buscarRec(no.esquerdo, chave);
         else
-            return buscarRec(no.right, key);
+            return buscarRec(no.direito, chave);
     }
 
-    public void inserir(int key, Object value) {
-        NoRN novo = new NoRN(key, value, Cor.Vermelho, null);
+    public void inserir(int chave, Object value) {
+        NoRN novo = new NoRN(chave, value, Cor.Vermelho, null);
         raiz = inserir(raiz, novo);
         corrigirInsercao(novo);
     }
@@ -24,12 +24,12 @@ public class arvoreRN {
         if (raiz == null)
             return novo;
 
-        if (novo.key < raiz.key) {
-            raiz.left = inserir(raiz.left, novo);
-            raiz.left.parent = raiz;
-        } else if (novo.key > raiz.key) {
-            raiz.right = inserir(raiz.right, novo);
-            raiz.right.parent = raiz;
+        if (novo.chave < raiz.chave) {
+            raiz.esquerdo = inserir(raiz.esquerdo, novo);
+            raiz.esquerdo.parent = raiz;
+        } else if (novo.chave > raiz.chave) {
+            raiz.direito = inserir(raiz.direito, novo);
+            raiz.direito.parent = raiz;
         }
 
         return raiz;
@@ -40,8 +40,8 @@ public class arvoreRN {
             NoRN pai = no.parent;
             NoRN avo = pai.parent;
 
-            if (pai == avo.left) {
-                NoRN tio = avo.right;
+            if (pai == avo.esquerdo) {
+                NoRN tio = avo.direito;
 
                 if (tio != null && tio.isRed()) {
                     pai.color = Cor.Preto;
@@ -49,7 +49,7 @@ public class arvoreRN {
                     avo.color = Cor.Vermelho;
                     no = avo;
                 } else {
-                    if (no == pai.right) {
+                    if (no == pai.direito) {
                         no = pai;
                         rotacaoEsquerda(no);
                     }
@@ -58,7 +58,7 @@ public class arvoreRN {
                     rotacaoDireita(avo);
                 }
             } else {
-                NoRN tio = avo.left;
+                NoRN tio = avo.esquerdo;
 
                 if (tio != null && tio.isRed()) {
                     pai.color = Cor.Preto;
@@ -66,7 +66,7 @@ public class arvoreRN {
                     avo.color = Cor.Vermelho;
                     no = avo;
                 } else {
-                    if (no == pai.left) {
+                    if (no == pai.esquerdo) {
                         no = pai;
                         rotacaoDireita(no);
                     }
@@ -80,43 +80,43 @@ public class arvoreRN {
     }
 
     private void rotacaoEsquerda(NoRN no) {
-        NoRN y = no.right;
-        no.right = y.left;
-        if (y.left != null) y.left.parent = no;
+        NoRN y = no.direito;
+        no.direito = y.esquerdo;
+        if (y.esquerdo != null) y.esquerdo.parent = no;
         y.parent = no.parent;
 
         if (no.parent == null) {
             raiz = y;
-        } else if (no == no.parent.left) {
-            no.parent.left = y;
+        } else if (no == no.parent.esquerdo) {
+            no.parent.esquerdo = y;
         } else {
-            no.parent.right = y;
+            no.parent.direito = y;
         }
 
-        y.left = no;
+        y.esquerdo = no;
         no.parent = y;
     }
 
     private void rotacaoDireita(NoRN no) {
-        NoRN y = no.left;
-        no.left = y.right;
-        if (y.right != null) y.right.parent = no;
+        NoRN y = no.esquerdo;
+        no.esquerdo = y.direito;
+        if (y.direito != null) y.direito.parent = no;
         y.parent = no.parent;
 
         if (no.parent == null) {
             raiz = y;
-        } else if (no == no.parent.right) {
-            no.parent.right = y;
+        } else if (no == no.parent.direito) {
+            no.parent.direito = y;
         } else {
-            no.parent.left = y;
+            no.parent.esquerdo = y;
         }
 
-        y.right = no;
+        y.direito = no;
         no.parent = y;
     }
 
-    public void remover(int key) {
-        NoRN no = buscar(key);
+    public void remover(int chave) {
+        NoRN no = buscar(chave);
         if (no != null)
             removerNo(no);
     }
@@ -126,28 +126,28 @@ public class arvoreRN {
         Cor corOriginal = y.color;
         NoRN x;
 
-        if (z.left == null) {
-            x = z.right;
-            transplantar(z, z.right);
-        } else if (z.right == null) {
-            x = z.left;
-            transplantar(z, z.left);
+        if (z.esquerdo == null) {
+            x = z.direito;
+            transplantar(z, z.direito);
+        } else if (z.direito == null) {
+            x = z.esquerdo;
+            transplantar(z, z.esquerdo);
         } else {
-            y = minimo(z.right);
+            y = minimo(z.direito);
             corOriginal = y.color;
-            x = y.right;
+            x = y.direito;
 
             if (y.parent == z) {
                 if (x != null) x.parent = y;
             } else {
-                transplantar(y, y.right);
-                y.right = z.right;
-                y.right.parent = y;
+                transplantar(y, y.direito);
+                y.direito = z.direito;
+                y.direito.parent = y;
             }
 
             transplantar(z, y);
-            y.left = z.left;
-            y.left.parent = y;
+            y.esquerdo = z.esquerdo;
+            y.esquerdo.parent = y;
             y.color = z.color;
         }
 
@@ -157,57 +157,57 @@ public class arvoreRN {
 
     private void corrigirRemocao(NoRN x) {
         while (x != raiz && (x == null || x.isBlack())) {
-            if (x == x.parent.left) {
-                NoRN w = x.parent.right;
+            if (x == x.parent.esquerdo) {
+                NoRN w = x.parent.direito;
                 if (w != null && w.isRed()) {
                     w.color = Cor.Preto;
                     x.parent.color = Cor.Vermelho;
                     rotacaoEsquerda(x.parent);
-                    w = x.parent.right;
+                    w = x.parent.direito;
                 }
 
-                if ((w.left == null || w.left.isBlack()) &&
-                        (w.right == null || w.right.isBlack())) {
+                if ((w.esquerdo == null || w.esquerdo.isBlack()) &&
+                        (w.direito == null || w.direito.isBlack())) {
                     w.color = Cor.Vermelho;
                     x = x.parent;
                 } else {
-                    if (w.right == null || w.right.isBlack()) {
-                        if (w.left != null) w.left.color = Cor.Preto;
+                    if (w.direito == null || w.direito.isBlack()) {
+                        if (w.esquerdo != null) w.esquerdo.color = Cor.Preto;
                         w.color = Cor.Vermelho;
                         rotacaoDireita(w);
-                        w = x.parent.right;
+                        w = x.parent.direito;
                     }
 
                     w.color = x.parent.color;
                     x.parent.color = Cor.Preto;
-                    if (w.right != null) w.right.color = Cor.Preto;
+                    if (w.direito != null) w.direito.color = Cor.Preto;
                     rotacaoEsquerda(x.parent);
                     x = raiz;
                 }
             } else {
-                NoRN w = x.parent.left;
+                NoRN w = x.parent.esquerdo;
                 if (w != null && w.isRed()) {
                     w.color = Cor.Preto;
                     x.parent.color = Cor.Vermelho;
                     rotacaoDireita(x.parent);
-                    w = x.parent.left;
+                    w = x.parent.esquerdo;
                 }
 
-                if ((w.right == null || w.right.isBlack()) &&
-                        (w.left == null || w.left.isBlack())) {
+                if ((w.direito == null || w.direito.isBlack()) &&
+                        (w.esquerdo == null || w.esquerdo.isBlack())) {
                     w.color = Cor.Vermelho;
                     x = x.parent;
                 } else {
-                    if (w.left == null || w.left.isBlack()) {
-                        if (w.right != null) w.right.color = Cor.Preto;
+                    if (w.esquerdo == null || w.esquerdo.isBlack()) {
+                        if (w.direito != null) w.direito.color = Cor.Preto;
                         w.color = Cor.Vermelho;
                         rotacaoEsquerda(w);
-                        w = x.parent.left;
+                        w = x.parent.esquerdo;
                     }
 
                     w.color = x.parent.color;
                     x.parent.color = Cor.Preto;
-                    if (w.left != null) w.left.color = Cor.Preto;
+                    if (w.esquerdo != null) w.esquerdo.color = Cor.Preto;
                     rotacaoDireita(x.parent);
                     x = raiz;
                 }
@@ -219,10 +219,10 @@ public class arvoreRN {
     private void transplantar(NoRN u, NoRN v) {
         if (u.parent == null) {
             raiz = v;
-        } else if (u == u.parent.left) {
-            u.parent.left = v;
+        } else if (u == u.parent.esquerdo) {
+            u.parent.esquerdo = v;
         } else {
-            u.parent.right = v;
+            u.parent.direito = v;
         }
 
         if (v != null) {
@@ -231,8 +231,8 @@ public class arvoreRN {
     }
 
     private NoRN minimo(NoRN no) {
-        while (no.left != null) {
-            no = no.left;
+        while (no.esquerdo != null) {
+            no = no.esquerdo;
         }
         return no;
     }
@@ -244,9 +244,9 @@ public class arvoreRN {
 
     private void percursoEmOrdem(NoRN no) {
         if (no != null) {
-            percursoEmOrdem(no.left);
+            percursoEmOrdem(no.esquerdo);
             System.out.print(no + " ");
-            percursoEmOrdem(no.right);
+            percursoEmOrdem(no.direito);
         }
     }
 }
